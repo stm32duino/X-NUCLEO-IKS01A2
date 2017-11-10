@@ -21,9 +21,14 @@ display data on a hyperterminal.
 * X_NUCLEO_IKS01A2_Tilt: This application shows how to detect the tilt event using the X-NUCLEO-IKS01A2.
 * X_NUCLEO_IKS01A2_WakeUp: This application shows how to detect the wake-up event using the X-NUCLEO-IKS01A2.
 
-# Notes
+# Dependencies
 
-This library requires STM32duino LSM6DSL, LSM303AGR, HTS221 and LPS22HB libraries.
+The X-NUCLEO-IKS01A2 library requires the following STM32duino libraries:
+
+* STM32duino LSM6DSL: https://github.com/stm32duino/LSM6DSL
+* STM32duino LSM303AGR: https://github.com/stm32duino/LIS3MDL
+* STM32duino HTS221: https://github.com/stm32duino/HTS221
+* STM32duino LPS22HB: https://github.com/stm32duino/LPS22HB
 
 ## Documentation
 
