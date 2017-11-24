@@ -5,7 +5,7 @@ It is equipped with Arduino UNO R3 connector layout, and is designed around the 
 the LSM303AGR 3D accelerometer and 3D magnetometer, the HTS221 humidity and temperature sensor and the LPS22HB pressure sensor.
 The X-NUCLEO-IKS01A2 interfaces with the STM32 microcontroller via the I²C pin, and it is possible to change the default I²C port.
 
-# Examples
+## Examples
 
 There are several examples with the X-NUCLEO-IKS01A2 library.
 * X_NUCLEO_IKS01A2_HelloWorld: This application provides a simple example of usage of the X-NUCLEO-IKS01A2 
@@ -21,7 +21,7 @@ display data on a hyperterminal.
 * X_NUCLEO_IKS01A2_Tilt: This application shows how to detect the tilt event using the X-NUCLEO-IKS01A2.
 * X_NUCLEO_IKS01A2_WakeUp: This application shows how to detect the wake-up event using the X-NUCLEO-IKS01A2.
 
-# Dependencies
+## Dependencies
 
 The X-NUCLEO-IKS01A2 library requires the following STM32duino libraries:
 
