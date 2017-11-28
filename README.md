@@ -26,7 +26,7 @@ display data on a hyperterminal.
 The X-NUCLEO-IKS01A2 library requires the following STM32duino libraries:
 
 * STM32duino LSM6DSL: https://github.com/stm32duino/LSM6DSL
-* STM32duino LSM303AGR: https://github.com/stm32duino/LIS3MDL
+* STM32duino LSM303AGR: https://github.com/stm32duino/LSM303AGR
 * STM32duino HTS221: https://github.com/stm32duino/HTS221
 * STM32duino LPS22HB: https://github.com/stm32duino/LPS22HB
 
