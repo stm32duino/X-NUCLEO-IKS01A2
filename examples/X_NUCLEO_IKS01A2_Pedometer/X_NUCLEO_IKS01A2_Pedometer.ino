@@ -47,7 +47,7 @@
 #define SerialPort Serial
 
 // Components.
-LSM6DSLSensor *AccGyr;
+LSM6DSLSensor AccGyr(&DEV_I2C);
 
 //Interrupts.
 volatile int mems_event = 0;
@@ -72,12 +72,12 @@ void setup() {
   //Interrupts.
   attachInterrupt(D4, INT1Event_cb, RISING);
 
-  // Initlialize Components.
-  AccGyr = new LSM6DSLSensor(&DEV_I2C);
-  AccGyr->Enable_X();
+  // Initialize Components.
+  AccGyr.begin();
+  AccGyr.Enable_X();
 
   // Enable Pedometer.
-  AccGyr->Enable_Pedometer();
+  AccGyr.Enable_Pedometer();
   
   previous_tick = millis();
 }
@@ -87,11 +87,11 @@ void loop() {
   {
     mems_event = 0;
     LSM6DSL_Event_Status_t status;
-    AccGyr->Get_Event_Status(&status);
+    AccGyr.Get_Event_Status(&status);
     if (status.StepStatus)
     {
       // New step detected, so print the step counter
-      AccGyr->Get_Step_Counter(&step_count);
+      AccGyr.Get_Step_Counter(&step_count);
       snprintf(report, sizeof(report), "Step counter: %d", step_count);
       SerialPort.println(report);
       
@@ -106,7 +106,7 @@ void loop() {
   current_tick = millis();
   if((current_tick - previous_tick) >= 3000)
   {
-    AccGyr->Get_Step_Counter(&step_count);
+    AccGyr.Get_Step_Counter(&step_count);
     snprintf(report, sizeof(report), "Step counter: %d", step_count);
     SerialPort.println(report);
     previous_tick = millis();

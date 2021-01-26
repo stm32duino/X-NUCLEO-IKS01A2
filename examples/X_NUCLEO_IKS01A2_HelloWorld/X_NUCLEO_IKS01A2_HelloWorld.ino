@@ -50,11 +50,11 @@
 #define SerialPort Serial
 
 // Components.
-HTS221Sensor  *HumTemp;
-LPS22HBSensor  *PressTemp;
-LSM6DSLSensor *AccGyr;
-LSM303AGR_ACC_Sensor *Acc2;
-LSM303AGR_MAG_Sensor *Mag;
+HTS221Sensor HumTemp(&DEV_I2C);
+LPS22HBSensor PressTemp(&DEV_I2C);
+LSM6DSLSensor AccGyr(&DEV_I2C);
+LSM303AGR_ACC_Sensor Acc2(&DEV_I2C);
+LSM303AGR_MAG_Sensor Mag(&DEV_I2C);
 
 void setup() {
   // Led.
@@ -66,18 +66,18 @@ void setup() {
   // Initialize I2C bus.
   DEV_I2C.begin();
 
-  // Initlialize components.
-  HumTemp  = new HTS221Sensor (&DEV_I2C);
-  HumTemp->Enable();
-  PressTemp = new LPS22HBSensor (&DEV_I2C);
-  PressTemp->Enable();
-  AccGyr = new LSM6DSLSensor(&DEV_I2C);
-  AccGyr->Enable_X();
-  AccGyr->Enable_G();
-  Acc2 = new LSM303AGR_ACC_Sensor(&DEV_I2C);
-  Acc2->Enable();
-  Mag = new LSM303AGR_MAG_Sensor(&DEV_I2C);
-  Mag->Enable();
+  // Initialize components.
+  HumTemp.begin();
+  HumTemp.Enable();
+  PressTemp.begin();
+  PressTemp.Enable();
+  AccGyr.begin();
+  AccGyr.Enable_X();
+  AccGyr.Enable_G();
+  Acc2.begin();
+  Acc2.Enable();
+  Mag.begin();
+  Mag.Enable();
 }
 
 void loop() {
@@ -89,27 +89,27 @@ void loop() {
 
   // Read humidity and temperature.
   float humidity, temperature;
-  HumTemp->GetHumidity(&humidity);
-  HumTemp->GetTemperature(&temperature);
+  HumTemp.GetHumidity(&humidity);
+  HumTemp.GetTemperature(&temperature);
   
   // Read pressure and temperature.
   float pressure, temperature2;
-  PressTemp->GetPressure(&pressure);
-  PressTemp->GetTemperature(&temperature2);
+  PressTemp.GetPressure(&pressure);
+  PressTemp.GetTemperature(&temperature2);
 
   // Read accelerometer and gyroscope.
   int32_t accelerometer[3];
   int32_t gyroscope[3];
-  AccGyr->Get_X_Axes(accelerometer);
-  AccGyr->Get_G_Axes(gyroscope);
+  AccGyr.Get_X_Axes(accelerometer);
+  AccGyr.Get_G_Axes(gyroscope);
   
   // Read accelerometer LSM303AGR.
   int32_t accelerometer2[3];
-  Acc2->GetAxes(accelerometer2);
+  Acc2.GetAxes(accelerometer2);
   
   // Read magnetometer LSM303AGR.
   int32_t magnetometer[3];
-  Mag->GetAxes(magnetometer);
+  Mag.GetAxes(magnetometer);
 
   // Output data.
   SerialPort.print("| Hum[%]: ");
