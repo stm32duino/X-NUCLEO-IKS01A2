@@ -47,7 +47,7 @@
 #define SerialPort Serial
 
 // Components.
-LSM6DSLSensor *AccGyr;
+LSM6DSLSensor AccGyr(&DEV_I2C);
 
 //Interrupts.
 volatile int mems_event = 0;
@@ -67,19 +67,19 @@ void setup() {
   //Interrupts.
   attachInterrupt(D4, INT1Event_cb, RISING);
 
-  // Initlialize Components.
-  AccGyr = new LSM6DSLSensor(&DEV_I2C);
-  AccGyr->Enable_X();
+  // Initialize Components.
+  AccGyr.begin();
+  AccGyr.Enable_X();
 
   // Enable Free Fall Detection.
-  AccGyr->Enable_Free_Fall_Detection();
+  AccGyr.Enable_Free_Fall_Detection();
 }
 
 void loop() {
   if (mems_event) {
     mems_event = 0;
     LSM6DSL_Event_Status_t status;
-    AccGyr->Get_Event_Status(&status);
+    AccGyr.Get_Event_Status(&status);
     if (status.FreeFallStatus)
     {
       // Led blinking.
